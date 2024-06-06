@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import {BrowserRouter, Route, Routes, Link} from "react-router-dom";
+import UserPages from "./components/UsersPage";
+import TodoPage from "./components/TodoPage";
+import EventsPage from "./components/EventsPage";
+import UserItemPage from "./components/UserItemPage";
+import TodoItemPage from "./components/TodoItemPage";
+import UsersPage from "./components/UsersPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <BrowserRouter>
+            <Link to={'/users'}>/users</Link>
+            <Link to={'/todos'}>/todos</Link>
+            <Link to={'/events'}>/events</Link>
+
+            <Routes>
+                <Route path='/events' element={<EventsPage />} />
+
+                <Route path='/todos' element={<TodoPage />} />
+                <Route path='/todos/:todoId' element={<TodoItemPage />} />
+
+                <Route path='/users' element={<UsersPage />} />
+                <Route path='/users/:userId' element={<UserItemPage />} />
+
+            </Routes>
+        </BrowserRouter>
+    );
+
 }
 
 export default App;
